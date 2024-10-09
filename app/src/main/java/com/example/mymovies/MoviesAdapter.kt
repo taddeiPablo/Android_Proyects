@@ -1,5 +1,6 @@
 package com.example.mymovies
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,17 +16,9 @@ class MoviesAdapter(private val movies: List<Movie>): RecyclerView.Adapter<Movie
     // que esta se redibuje se ira redibujando ViewHolder.
     //class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
-    //
-    class ViewHolder(binding: ViewMovieItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(movie: Movie){
-            // aqui nos falta realizar el banding con el layout
-        }
-    }
-
     // aqui se va a crear una nueva vista, cuando el recyclerview se lo pida
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         TODO("Not yet implemented")
-
         // esta es una forma de inflar una view pero tambien se puede realizar de otra forma
         /*val view = LayoutInflater
                     .from(parent.context)
@@ -40,14 +33,24 @@ class MoviesAdapter(private val movies: List<Movie>): RecyclerView.Adapter<Movie
         )
         return ViewHolder(binding)
     }
-    // aqui devuelve el numero de elementos que contiene el adapter
+
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-        return movies.size;
+        return movies.size
     }
+
     // aqui se va a actualizar la vista cuando el adapter se lo pida
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         TODO("Not yet implemented")
         holder.bind(movies[position])
     };
+
+    //
+    class ViewHolder(val binding: ViewMovieItemBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(movie: Movie){
+            // aqui nos falta realizar el banding con el layout
+            // ahora aqui procedemos a dibujar en nuestro layout de items los
+            // datos de peliculas que tenemos disponibles
+            binding.titleMovie.text = movie.title
+        }
+    }
 }

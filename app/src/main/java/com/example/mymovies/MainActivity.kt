@@ -1,12 +1,14 @@
 package com.example.mymovies
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymovies.databinding.ActivityMainBinding
 
 // aqui un ejemplo de una Activity, siempre que se crea un layout
@@ -23,16 +25,18 @@ class MainActivity : AppCompatActivity() {
         val banding = ActivityMainBinding.inflate(layoutInflater);
         // aqui finalmente inflamos la view para que sea renderizada
         setContentView(banding.root);
-
-        banding.recycleTest.adapter = MoviesAdapter(
-            listOf(
-                Movie("Pelicula1","url:1"),
-                Movie("Pelicula2","url:2"),
-                Movie("Pelicula3","url:3"),
-                Movie("Pelicula4","url:4")
+        try {
+            banding.recycleTest.layoutManager = LinearLayoutManager(this)
+            banding.recycleTest.adapter = MoviesAdapter(
+                listOf(
+                    Movie("Pelicula1","url:1"),
+                    Movie("Pelicula2","url:2"),
+                    Movie("Pelicula3","url:3"),
+                    Movie("Pelicula4","url:4")
+                )
             )
-        )
-
-
+        }catch (e: Exception) {
+            Log.e("ERROR MAINACTIVITY", e.message.toString());
+        }
     }
 }
