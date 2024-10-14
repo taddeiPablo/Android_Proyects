@@ -30,12 +30,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextDecoration
 
-//
+// CLASE MAIN ACTIVITY - SIMILAR A LAS VERSION ANTERIORES DE ANDROID TIENE LA MISMA
+// UTILIDAD FUNDAMENTAL EN ANDROID.
 class MainActivity : ComponentActivity() {
+    // aqui metodo onCreate tiene una igual funcionalidad que en versiones anteriores de android.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // aqui comenzanmos a ver las diferencia que existen en esta nueva version de android
+        // este bloque se utiliza para definir el diseño de la IU utilizando jetpack compose
         setContent {
+            // aqui declaramos una funcion composable en la cual colocaremos
+            // el resto de elementos que colocaremos para formar la iu
             PrimerEjemplo_en_JetpackComposeTheme {
                 /*Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     /*Greeting(
@@ -43,6 +49,8 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     )*/
                 }*/
+                // aqui creamos un elemento de tipo surface, este es un tipo de elemento
+                // que representa una parte de la ui y que podemos aplicarle estilos y demas
                 Surface (
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -53,6 +61,10 @@ class MainActivity : ComponentActivity() {
                         from = "From Emma",
                         modifier = Modifier.padding(8.dp)
                     )*/
+                    // aqui creamos una funcion composable, en la cual creamos
+                    // una card muy simple pero que muestra como trabajar en android.
+                    //nota : aqui podemos ver que utilizamos un stringResources ya que los
+                    // los string utilizados estan en el string.xml
                     GreetingImage(
                         message = stringResource(R.string.happy_birthday_sam_text),
                         from = stringResource(R.string.from_emma_text)
@@ -75,6 +87,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //
 @Composable
 fun GreetingText(message: String, from: String,  modifier: Modifier = Modifier){
+    // aqui creamos un elemento de tipo column que alinea a sus childs
+    // de forma vertical.
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
@@ -102,7 +116,9 @@ fun GreetingText(message: String, from: String,  modifier: Modifier = Modifier){
     }
 }
 
-//
+// Aqui creamos una funcion composable, por la cual vamos a colocar
+// una imagen de fondo + poder agregar de frente el texto necesario
+// para poder ver nuestra tarjeta
 @Composable
 fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
     val image = painterResource(R.drawable.androidparty)
