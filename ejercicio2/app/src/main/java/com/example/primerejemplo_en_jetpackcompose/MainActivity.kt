@@ -1,5 +1,6 @@
 package com.example.primerejemplo_en_jetpackcompose
 
+//
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
                         from = "From Emma",
                         modifier = Modifier.padding(8.dp)
                     )*/
+
                     // aqui creamos una funcion composable, en la cual creamos
                     // una card muy simple pero que muestra como trabajar en android.
                     //nota : aqui podemos ver que utilizamos un stringResources ya que los
@@ -84,7 +86,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         )
     }
 }*/
-//
+
+// Aqui cree una nueva funcion composable, en la cual voy a crear
+// el texto necesario para conformar el saludo.
 @Composable
 fun GreetingText(message: String, from: String,  modifier: Modifier = Modifier){
     // aqui creamos un elemento de tipo column que alinea a sus childs
@@ -133,16 +137,25 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
                 .padding(8.dp)
     * )
     * */
-    //
+    // aqui tenemos un elemento Box que utilizaremos para
+    // lograr colocar un elemento hijo sobre otro elemento hijo
+    // en este caso lo vamos a usar para poder colocar una imagen de fondo
+    // y de frente nuestros texto de saludo
     Box(
-        modifier
+        modifier //elemento modifier se utiliza para aplicar atributos a los elementos
+        // como color, padding y demas
     ){
+        // aqui cargamos un elemento llamadado image el cual podremos utilizar
+        // para cargar imagenes de todo tipo
         Image(
             painter = image,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             alpha = 0.5f
         )
+        // este es un elemento creado por uno en una funcion componible
+        // por ejemplo en este caso esta funcion componible se utiliza para
+        // crear nuestro saludo.
         GreetingText(
             message = message,
             from = from
@@ -158,7 +171,8 @@ fun GreetingPreview() {
     }
 }*/
 
-//
+//Aqui en esta funcion podemos ir probando la interfaz que vamos armando
+// sin la necesidad de compilar a cada rato la app
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview(){
