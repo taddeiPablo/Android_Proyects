@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tarjeta_de_presentacion</string>
+    <string name="pablo_alejandro_taddei_text">Pablo Alejandro Taddei</string>
+    <string name="analista_programador_text">Analista Programador</string>
+    <string name="_mobile_text">11-4278-4956</string>
+    <string name="redesSociales_text">\@TaddeiPablo</string>
+    <string name="_email_personal_text">taddeiapablo23@gmail.com</string>
+</resources>
