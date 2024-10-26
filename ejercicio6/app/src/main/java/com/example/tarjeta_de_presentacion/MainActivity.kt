@@ -1,6 +1,5 @@
 package com.example.tarjeta_de_presentacion
 
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,14 +11,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -38,7 +35,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Tarjeta_de_presentacionTheme {
-                //
+                // funcion componible final que representa la tarjeta de presentacion
                 PersonalView(
                     name = stringResource(R.string.pablo_alejandro_taddei_text),
                     lastname = stringResource(R.string.analista_programador_text),
@@ -51,13 +48,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//
+// funcion componible que crea el bloque en donde armo la imagen personal junto
+// al text en donde coloco mi nombre y la profesicion.
 @Composable
 fun PersonalImage(name: String, lastname: String){
     val image = painterResource(R.drawable.android_logo)
+    //
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+        //
         Surface(
             color = colorResource(R.color.fondo_imagen)
         ) {
@@ -89,12 +89,13 @@ fun PersonalImage(name: String, lastname: String){
 //
 @Composable
 fun PersonalInformation(call: String, shared: String, email: String){
+    //
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val colorIcon = colorResource(R.color.coloriconsLetters)
         val colorLetter = R.color.coloriconsLetters
-
+        //
         Row(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
@@ -169,18 +170,22 @@ fun PersonalInformation(call: String, shared: String, email: String){
 //
 @Composable
 fun PersonalView(name: String, lastname: String, call: String, shared: String, email: String){
+    //
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = colorResource(R.color.fondoTarjeta)
     ) {
+        //
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            //
             PersonalImage(
                 name = name,
                 lastname = lastname
             )
+            //
             PersonalInformation(
                 call = call,
                 shared = shared,
