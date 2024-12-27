@@ -86,26 +86,29 @@ fun PersonalImage(name: String, lastname: String){
         )
     }
 }
-//
+// funcion componible que crea el bloque en donde armmo la estructura para la informacion
+// perssonal
 @Composable
 fun PersonalInformation(call: String, shared: String, email: String){
-    //
+    // aqui determmino la columna principal
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val colorIcon = colorResource(R.color.coloriconsLetters)
         val colorLetter = R.color.coloriconsLetters
-        //
+        // aqui primera fila crceada para acomodar la imagen y el texto que va de bajo
         Row(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
         ){
+            // aqui cargo en esta imagen un icono
             Image(
                 painter = painterResource(R.drawable.call),
                 contentDescription = "call",
                 colorFilter = ColorFilter.tint(colorIcon),
                 modifier = Modifier.width(30.dp)
             )
+            // aqui cargo el texto que va ssituado por debajo de la imagen
             Text(
                 text = call,
                 fontSize = 14.sp,
@@ -119,16 +122,19 @@ fun PersonalInformation(call: String, shared: String, email: String){
                         )
             )
         }
+        // aqui segunda fila creada para accomodar los siguientes iconos y el texto que le corresponde
         Row(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
-        ){
+        ) {
+            // imagen usada para cargar el icono en este caso es un icono de tipo compartir
             Image(
                 painter = painterResource(R.drawable.share),
                 contentDescription = "compartir",
                 colorFilter = ColorFilter.tint(colorIcon),
                 modifier = Modifier.width(30.dp)
             )
+            // aqui coloco otros texto al lado del icono
             Text(
                 text= shared,
                 fontSize = 14.sp,
@@ -142,16 +148,19 @@ fun PersonalInformation(call: String, shared: String, email: String){
                     )
             )
         }
+        // aqui tercer y ultima fila en la cual vamos a colocar tambien un icono y su respectivo texto
         Row(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
         ){
+            // aqui imagen que sera nuestro icono
             Image(
                 painter = painterResource(R.drawable.mail),
                 contentDescription = "call",
                 colorFilter = ColorFilter.tint(colorIcon),
                 modifier = Modifier.width(30.dp)
             )
+            // texto correspondiente
             Text(
                 text = email,
                 fontSize = 14.sp,
@@ -167,25 +176,30 @@ fun PersonalInformation(call: String, shared: String, email: String){
         }
     }
 }
-//
+// funcion componible final en la cual vamos a armar una estructura para poder
+// utilizar el resto de funciones componibles que contienen la imagen personal (PersonalImage)
+// y ademas tambien llamaremos a la funcion que tiene la informacion personal (PersonalInformation)
 @Composable
 fun PersonalView(name: String, lastname: String, call: String, shared: String, email: String){
-    //
+    //aqui este componente nos permite crear un fondo muy bueno en el cual podemos darle diferentes
+    // configuraciones como colores, tamaños etc etc
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = colorResource(R.color.fondoTarjeta)
     ) {
-        //
+        //  aqui determino una columna nueva para estructurar el resto de la app
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            //
+            // aqui finalmente primero invoco la funcion componible en la cual
+            // vamos a dibujar en la pantalla La imagen y el nombre de la persona
             PersonalImage(
                 name = name,
                 lastname = lastname
             )
-            //
+            // aqui finalmente llamo a la funcion que me cargara la informacion personal
+            // en la tarjeta personal
             PersonalInformation(
                 call = call,
                 shared = shared,
@@ -195,6 +209,9 @@ fun PersonalView(name: String, lastname: String, call: String, shared: String, e
     }
 }
 
+// AQUI PODEMOS IR ARMANDO LA VIEW SIN LA NECESIDAD DE TENER QUE RECOMPILAR TODO EL TIEMPO LA APP
+// ESTA FUNCION COMPONIBLE NOS PERMITE REALIZAR ESTA TAREA SIN MAYOR PROBLEMA Y LUEGO FINALMENTE
+// UNA VEZ QUE LA TENGAMOS ARMADA PODREMOS COMPILAR EL ARMADO FINAL
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
