@@ -16,9 +16,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.Surface
 import android.view.TextureView
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.PopupWindow
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -57,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     var colors = listOf<Int>(
         Color.BLUE, Color.GREEN, Color.RED, Color.CYAN, Color.GRAY, Color.BLACK, Color.DKGRAY, Color.MAGENTA, Color.YELLOW, Color.RED
     )
+    lateinit var btnFilter: Button
 
     // Este es el punto de entrada principal de la actividad
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +88,12 @@ class MainActivity : AppCompatActivity() {
         // Obtiene referencias a la TextureView y a la ImageView en la UI.
         textureView = findViewById(R.id.textureV)
         imageview = findViewById(R.id.imageV)
+
+        btnFilter = findViewById(R.id.filter)
+
+        btnFilter.setOnClickListener {
+            showPopup()
+        }
 
         //Cuando TextureView está lista (onSurfaceTextureAvailable), se llama open_camera().
         //onSurfaceTextureUpdated se ejecuta cada vez que la cámara actualiza la imagen.
@@ -237,5 +249,30 @@ class MainActivity : AppCompatActivity() {
             }
 
         }, handler)
+    }
+
+    // Desde aqui se abre el popup
+    fun showPopup(){
+        // aqui preparo un inflater para luego inflar el layout requerido
+        val inflater = LayoutInflater.from(this)
+        // aqui inflamos el layout que mostraremos como popup
+        val popupView = inflater.inflate(R.layout.popup_layout, null)
+        // aqui finalmente creo el popup configurando algunos parametros
+        // como por ejemplo el espacio que va a ocupara y demas valores
+        val popupWindow = PopupWindow(
+            popupView,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            true
+        )
+        // aqui determino en que parte de la pantalla se va a mostrar el popup
+        popupWindow.showAtLocation(textureView, Gravity.CENTER, 0, 0)
+
+        // aqui tomo el boton que tiene el layout del popup para luego cerrar la ventana
+        val closeButton = popupView.findViewById<Button>(R.id.close_popup)
+        // utilizo un evento onclick para cerrar la ventana.
+        closeButton.setOnClickListener{
+            popupWindow.dismiss()
+        }
     }
 }
